@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    container_name: find-a-friend-db
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: findafriend
+    ports:
+      - 5433:5432
+    volumes:
+      - find-a-friend-db:/var/lib/postgresql/data
+
+  db-test:
+    image: postgres:16
+    container_name: find-a-friend-db-test
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: findafriend-test
+    ports:
+      - 5434:5432
+    volumes:
+      - find-a-friend-db-test:/var/lib/postgresql/data
+
+volumes:
+  find-a-friend-db:
+  find-a-friend-db-test:
