@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
-    "build": "tsc",
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
+  "start:dev": "tsx watch src/server.ts",
+  "start": "node build/server.js",
+  "build": "tsc && npx prisma generate",
+  "test": "vitest run",
+  "test:watch": "vitest"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
