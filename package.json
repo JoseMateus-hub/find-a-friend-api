@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
   "start:dev": "tsx watch src/server.ts",
-  "start": "npx prisma generate && node build/server.js",
+  "start": "npx prisma migrate deploy && node build/server.js",
   "build": "tsc",
   "test": "vitest run",
   "test:watch": "vitest"
