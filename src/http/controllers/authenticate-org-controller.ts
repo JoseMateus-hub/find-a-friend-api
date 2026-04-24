@@ -17,13 +17,14 @@ export async function authenticateOrgController(
     const { org } = await authenticateOrgUseCase({ email, password })
 
     const token = await reply.jwtSign(
-      {},
-      {
-        sign: {
-          sub: org.id,
-        },
-      },
-    )
+  { sub: org.id },
+  {
+    sign: {
+      sub: org.id,
+    },
+  },
+)
+    
 
     return reply.status(200).send({ token })
   } catch (err) {
