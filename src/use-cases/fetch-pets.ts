@@ -19,12 +19,18 @@ export async function fetchPetsUseCase({
 }: FetchPetsUseCaseRequest) {
   const pets = await prisma.pet.findMany({
     where: {
-      city,
-      ...(age && { age }),
-      ...(size && { size }),
-      ...(energy && { energy }),
-      ...(independence && { independence }),
-      ...(environment && { environment }),
+      AND: [
+        {
+          city: {
+            equals: city.charAt(0).toUpperCase() + city.slice(1).toLowerCase(),
+          },
+        },
+        ...(age ? [{ age }] : []),
+        ...(size ? [{ size }] : []),
+        ...(energy ? [{ energy }] : []),
+        ...(independence ? [{ independence }] : []),
+        ...(environment ? [{ environment }] : []),
+      ],
     },
     include: {
       org: {

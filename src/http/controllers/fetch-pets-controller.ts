@@ -16,9 +16,13 @@ export async function fetchPetsController(
   })
 
   const filters = fetchPetsQuerySchema.parse(request.query)
+  
+  console.log('Filters received:', filters)
 
   try {
     const { pets } = await fetchPetsUseCase(filters)
+    
+    console.log('Pets found:', pets.length)
 
     return reply.status(200).send({ pets })
   } catch (err) {

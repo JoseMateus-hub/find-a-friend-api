@@ -1,10 +1,15 @@
 import fastify from 'fastify'
 import fastifyJwt from '@fastify/jwt'
+import fastifyCors from '@fastify/cors'
 import { ZodError } from 'zod'
 import { orgsRoutes } from './http/routes/orgs-routes'
 import { petsRoutes } from './http/routes/pets-routes'
 
 export const app = fastify()
+
+app.register(fastifyCors, {
+  origin: 'http://localhost:3000',
+})
 
 app.register(fastifyJwt, {
   secret: process.env.JWT_SECRET ?? 'fallback-secret',
